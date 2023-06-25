@@ -38,6 +38,10 @@ function makeTaskItem() {
 
 }
 
+/**
+ * 
+ * @param {*} lineSelection 
+ */
 function deleteTaskItem(lineSelection) {
 
   taskList.forEach(element => {
@@ -63,6 +67,7 @@ function deleteTaskItem(lineSelection) {
  * @param {integer} taskToMove 
  * @param {integer} destinationIndex 
  */
+
 function moveTask(taskToMove, destinationIndex) {
   
   let arrA = taskList.slice(0, taskToMove.lineNumber);
@@ -78,8 +83,21 @@ function sortTask() {
   taskList.sort();
 }
 
-function compareFn() {
+/**
+ * 
+ * @param {*} taskItemA 
+ * @param {*} taskItemB 
+ */
+function compareFn(taskItemA, taskItemB) {
+  
+  let charA = taskItemA.task.charAt(0);
+  let charB = taskItemB.task.charAt(0)
 
+  if (charA > charB) {
+    //Dont move any task or maybe return 0
+  } else if (charA < charB) {
+    //Move taskItemB to before TaskItemA or maybe return 1
+  }
 }
 
 function editTask() {
