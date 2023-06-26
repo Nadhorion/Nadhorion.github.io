@@ -1,3 +1,4 @@
+let listTitle = "New List";
 let taskList = [];
 const list = document.querySelector('ul');
 fakeList();
@@ -38,6 +39,12 @@ function makeTaskItem() {
 
 }
 
+/**
+ * Deletes a desired task item from the list by looking for the specified
+ * task through index values and splicing it. ====I think I can do this better====
+ * 
+ * @param {integer} lineSelection 
+ */
 function deleteTaskItem(lineSelection) {
 
   taskList.forEach(element => {
@@ -51,14 +58,11 @@ function deleteTaskItem(lineSelection) {
 
 }
 
-// Da Plan For moveTask()//
-    // (arrA)I can cut the array from the start to before the task to move. 
-    // Then save the task to move.
-    // (arrB)then cut up to the destinationLine
-    // (arrC) slice the rest to save
-    // Then push the saved task to front of the remaining arrary followed by arrB and arrA
 
 /**
+ * Moves a task to a different location within the taskList array
+ * by splitting it up into differnt segment and rejoining them in 
+ * the desired order
  * 
  * @param {integer} taskToMove 
  * @param {integer} destinationIndex 
@@ -74,6 +78,10 @@ function moveTask(taskToMove, destinationIndex) {
   renderTaskList();
 }
 
+/**
+ * Sorts the taskList alpanumerically by passing
+ * two task to the compareFn at a time
+ */
 function sortTaskList() {
 
   let i = 0;
@@ -91,10 +99,12 @@ function sortTaskList() {
 }
 
 /**
+ * Compares two tasks or Strings and returns true if they need to be sorted 
+ * or false otherwise
  * 
- * @param {*} taskItemA 
- * @param {*} taskItemB 
- * @param {*} recursionAddon 
+ * @param {String} taskItemA 
+ * @param {String} taskItemB 
+ * @param {integer} recursionAddon 
  * @returns 
  */
 function compareFn(taskItemA, taskItemB, recursionAddon) {
@@ -105,8 +115,8 @@ function compareFn(taskItemA, taskItemB, recursionAddon) {
     i += recursionAddon;
   }
 
-  let charA = taskItemA.task.charAt(i);
-  let charB = taskItemB.task.charAt(i);
+  let charA = taskItemA.charAt(i);
+  let charB = taskItemB.charAt(i);
 
   if (charA > charB) {
 
