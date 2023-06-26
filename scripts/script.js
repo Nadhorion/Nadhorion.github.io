@@ -3,23 +3,23 @@ const list = document.querySelector('ul');
 fakeList();
 
 //Fake list to edit
-function fakeList() {
-  let i = 0;
-  while (i < 10) {
+// function fakeList() {
+//   let i = 0;
+//   while (i < 10) {
 
-    let task = i;
-    let isCompleted = false;
-    let lineNumber = taskList.length;
-    let deleteTask = false;
-    let taskItem = new TaskItem(task, isCompleted, lineNumber, deleteTask);
+//     let task = i;
+//     let isCompleted = false;
+//     let lineNumber = taskList.length;
+//     let deleteTask = false;
+//     let taskItem = new TaskItem(task, isCompleted, lineNumber, deleteTask);
   
-    taskList.push( taskItem );
+//     taskList.push( taskItem );
 
-    i += 1;
+//     i += 1;
 
-  }
-  renderTaskList();
-}
+//   }
+//   renderTaskList();
+// }
 
 /**
  * Supplies parameters to TaskItem() and adds it to the bottom of
@@ -74,12 +74,61 @@ function moveTask(taskToMove, destinationIndex) {
   renderTaskList();
 }
 
-function sortTask() {
-  taskList.sort();
+function sortTaskList() {
+
+  let i = 0;
+
+  while (i < taskList.length) {
+
+    let doSorting = compareFn(taskList[i].task, taskList[i + 1].task );
+
+    if (doSorting === true) {
+
+      moveTask(taskList[i + 1], i);
+
+    }
+  }
 }
 
+<<<<<<< Updated upstream
 function compareFn() {
 
+=======
+/**
+ * 
+ * @param {*} taskItemA 
+ * @param {*} taskItemB 
+ * @param {*} recursionAddon 
+ * @returns 
+ */
+function compareFn(taskItemA, taskItemB, recursionAddon) {
+  
+  let i = 0;
+
+  if (recursionAddon >= 0) {
+    i += recursionAddon;
+  }
+
+  let charA = taskItemA.task.charAt(i);
+  let charB = taskItemB.task.charAt(i);
+
+  if (charA > charB) {
+
+    return false;
+    //Dont move any task or maybe return 0 / False
+
+  } else if (charA < charB) {
+
+    return true;
+    //Move taskItemB to before TaskItemA or maybe return 1 / True
+
+  } else {
+
+    compareFn(taskItemA, taskItemB, i + 1)
+    //return 2 or do recursion and move to the next charAt for comparison. 
+    //if no more char's, leave them as is I guess. (aka return False eventually)
+  }
+>>>>>>> Stashed changes
 }
 
 function editTask() {
