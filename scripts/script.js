@@ -90,10 +90,6 @@ function sortTaskList() {
   }
 }
 
-<<<<<<< Updated upstream
-function compareFn() {
-
-=======
 /**
  * 
  * @param {*} taskItemA 
@@ -128,7 +124,6 @@ function compareFn(taskItemA, taskItemB, recursionAddon) {
     //return 2 or do recursion and move to the next charAt for comparison. 
     //if no more char's, leave them as is I guess. (aka return False eventually)
   }
->>>>>>> Stashed changes
 }
 
 function editTask() {
