@@ -4,23 +4,23 @@ const list = document.querySelector('ul');
 fakeList();
 
 //Fake list to edit
-// function fakeList() {
-//   let i = 0;
-//   while (i < 10) {
+function fakeList() {
+  let i = 0;
+  while (i < 10) {
 
-//     let task = i;
-//     let isCompleted = false;
-//     let lineNumber = taskList.length;
-//     let deleteTask = false;
-//     let taskItem = new TaskItem(task, isCompleted, lineNumber, deleteTask);
+    let task = (i * 3).toString();
+    let isCompleted = false;
+    let lineNumber = taskList.length;
+    let deleteTask = false;
+    let taskItem = new TaskItem(task, isCompleted, lineNumber, deleteTask);
   
-//     taskList.push( taskItem );
+    taskList.push( taskItem );
 
-//     i += 1;
+    i += 1;
 
-//   }
-//   renderTaskList();
-// }
+  }
+  renderTaskList();
+}
 
 /**
  * Supplies parameters to TaskItem() and adds it to the bottom of
@@ -41,7 +41,7 @@ function makeTaskItem() {
 
 /**
  * Deletes a desired task item from the list by looking for the specified
- * task through index values and splicing it. ====I think I can do this better====
+ * task through index values and splicing it. ==I think I can do this better==
  * 
  * @param {integer} lineSelection 
  */
@@ -61,8 +61,8 @@ function deleteTaskItem(lineSelection) {
 
 /**
  * Moves a task to a different location within the taskList array
- * by splitting it up into differnt segment and rejoining them in 
- * the desired order
+ * by splitting it up into different segments and rejoining them in 
+ * the new order
  * 
  * @param {integer} taskToMove 
  * @param {integer} destinationIndex 
@@ -80,7 +80,7 @@ function moveTask(taskToMove, destinationIndex) {
 
 /**
  * Sorts the taskList alpanumerically by passing
- * two task to the compareFn at a time
+ * two tasks to the compareFn at a time
  */
 function sortTaskList() {
 
@@ -88,14 +88,22 @@ function sortTaskList() {
 
   while (i < taskList.length) {
 
-    let doSorting = compareFn(taskList[i].task, taskList[i + 1].task );
+    let doSorting = compareFn(taskList[i].task, taskList[(i + 1)].task );
 
     if (doSorting === true) {
 
       moveTask(taskList[i + 1], i);
 
+      i += 1;
+
     }
+
+    i += 1;
+
   }
+
+  renderTaskList();
+
 }
 
 /**
