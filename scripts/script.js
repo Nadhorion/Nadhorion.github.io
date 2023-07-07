@@ -61,22 +61,26 @@ function deleteTaskItem(lineSelection) {
 
 /**
  * Moves a task to a different location within the taskList array
- * by splitting it up into different segments and rejoining them in 
- * the new order
  * 
  * @param {integer} taskToMove 
  * @param {integer} destinationIndex 
  */
 function moveTask(taskToMove, destinationIndex) {
   
-  let arrA = taskList.slice(0, taskToMove.lineNumber);
-  let taskHanger = taskToMove;
-  let arrB = taskList.slice(taskToMove.lineNumber + 1, destinationIndex + 1 );
-  let arrC = taskList.slice(destinationIndex + 1 );
+  // let arrA = taskList.slice(0, taskToMove.lineNumber);
+  // let taskHanger = taskToMove;
+  // let arrB = taskList.slice(taskToMove.lineNumber + 1, destinationIndex + 1 );
+  // let arrC = taskList.slice(destinationIndex + 1 );
   
-  taskList = [...arrA, ...arrB, taskHanger, ...arrC];
+  // taskList = [...arrA, ...arrB, taskHanger, ...arrC];
+
+  taskList.splice(destinationIndex, 0, taskList[taskToMove]);
+  taskList.splice(taskList.indexOf(taskList[taskToMove]), 1);
+
   renderTaskList();
+
 }
+
 
 /**
  * Sorts the taskList alpanumerically by passing
@@ -88,7 +92,7 @@ function sortTaskList() {
 
   while (i < taskList.length) {
 
-    let doSorting = compareFn(taskList[i].task, taskList[(i + 1)].task );
+    let doSorting = compareFn(taskList[i].task, taskList[(i + 1)].task, 0);
 
     if (doSorting === true) {
 
@@ -96,6 +100,7 @@ function sortTaskList() {
 
       i += 1;
 
+      renderTaskList();
     }
 
     i += 1;
@@ -118,13 +123,22 @@ function sortTaskList() {
 function compareFn(taskItemA, taskItemB, recursionAddon) {
   
   let i = 0;
+  let j = 0;
 
   if (recursionAddon >= 0) {
-    i += recursionAddon;
+    j += recursionAddon;
   }
 
-  let charA = taskItemA.charAt(i);
-  let charB = taskItemB.charAt(i);
+  let charA = taskItemA.charAt(j);
+  let charB = taskItemB.charAt(j);
+
+  if (charA === undefined || charB === undefined) {
+
+    renderTaskList();
+    return;
+    
+  }
+
 
   if (charA > charB) {
 
@@ -138,7 +152,7 @@ function compareFn(taskItemA, taskItemB, recursionAddon) {
 
   } else {
 
-    compareFn(taskItemA, taskItemB, i + 1)
+    compareFn(taskItemA, taskItemB, (j + 1))
     //return 2 or do recursion and move to the next charAt for comparison. 
     //if no more char's, leave them as is I guess. (aka return False eventually)
   }
