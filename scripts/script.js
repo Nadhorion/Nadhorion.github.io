@@ -1,5 +1,6 @@
-let listTitle = "New List";
+let listTitle = "List";
 let taskList = [];
+
 const list = document.querySelector('ul');
 fakeList();
 
@@ -58,7 +59,6 @@ function deleteTaskItem(lineSelection) {
 
 }
 
-
 /**
  * Moves a task to a different location within the taskList array
  * 
@@ -66,21 +66,25 @@ function deleteTaskItem(lineSelection) {
  * @param {integer} destinationIndex 
  */
 function moveTask(taskToMove, destinationIndex) {
-  
-  // let arrA = taskList.slice(0, taskToMove.lineNumber);
-  // let taskHanger = taskToMove;
-  // let arrB = taskList.slice(taskToMove.lineNumber + 1, destinationIndex + 1 );
-  // let arrC = taskList.slice(destinationIndex + 1 );
-  
-  // taskList = [...arrA, ...arrB, taskHanger, ...arrC];
 
-  taskList.splice(destinationIndex, 0, taskList[taskToMove]);
-  taskList.splice(taskList.indexOf(taskList[taskToMove]), 1);
+  let taskHold = taskList[taskToMove];
+
+  if (taskToMove > destinationIndex) {
+
+    taskList.splice((taskList.indexOf(taskList[taskToMove])), 1);
+    taskList.splice(destinationIndex, 0, taskHold);
+
+  } else {
+
+    taskList.splice((taskList.indexOf(taskList[taskToMove])), 1);
+    taskList.splice(destinationIndex, 0, taskHold);
+
+  }
+  
 
   renderTaskList();
 
 }
-
 
 /**
  * Sorts the taskList alpanumerically by passing
@@ -88,24 +92,7 @@ function moveTask(taskToMove, destinationIndex) {
  */
 function sortTaskList() {
 
-  let i = 0;
-
-  while (i < taskList.length) {
-
-    let doSorting = compareFn(taskList[i].task, taskList[(i + 1)].task, 0);
-
-    if (doSorting === true) {
-
-      moveTask(taskList[i + 1], i);
-
-      i += 1;
-
-      renderTaskList();
-    }
-
-    i += 1;
-
-  }
+  taskList.sort(compareFn);
 
   renderTaskList();
 
@@ -120,49 +107,40 @@ function sortTaskList() {
  * @param {integer} recursionAddon 
  * @returns 
  */
-function compareFn(taskItemA, taskItemB, recursionAddon) {
-  
-  let i = 0;
-  let j = 0;
+function compareFn(a, b) {
 
-  if (recursionAddon >= 0) {
-    j += recursionAddon;
+  let compareArr = [a.task, b.task].sort();
+
+  let aIndex = compareArr.indexOf(a.task);
+  let bIndex = compareArr.indexOf(b.task);
+
+  if (aIndex < bIndex) {
+
+    return -1;
+
   }
 
-  let charA = taskItemA.charAt(j);
-  let charB = taskItemB.charAt(j);
+  if (aIndex > bIndex) {
 
-  if (charA === undefined || charB === undefined) {
+    return 1;
 
-    renderTaskList();
-    return;
-    
   }
 
+  return 0;
 
-  if (charA > charB) {
-
-    return false;
-    //Dont move any task or maybe return 0 / False
-
-  } else if (charA < charB) {
-
-    return true;
-    //Move taskItemB to before TaskItemA or maybe return 1 / True
-
-  } else {
-
-    compareFn(taskItemA, taskItemB, (j + 1))
-    //return 2 or do recursion and move to the next charAt for comparison. 
-    //if no more char's, leave them as is I guess. (aka return False eventually)
-  }
 }
 
 function editTask() {
 
 }
 
-function editTitle() {
+function editListTitle() {
+
+  let listTitleNode = document.querySelector('h1');
+  let newTitle = prompt("Edit title:", `${listTitle}`);
+
+  listTitleNode.textContent = newTitle;
+  listTitle = newTitle
 
 }
 
