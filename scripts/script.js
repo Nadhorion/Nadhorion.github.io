@@ -88,7 +88,8 @@ function moveTask(taskToMove, destinationIndex) {
 
 /**
  * Sorts the taskList alpanumerically by passing
- * two tasks to the compareFn at a time
+ * two task objects to the compareFn at a time using
+ * the sort() function
  */
 function sortTaskList() {
 
@@ -99,17 +100,29 @@ function sortTaskList() {
 }
 
 /**
- * Compares two tasks or Strings and returns true if they need to be sorted 
- * or false otherwise
+ * Takes two sequential taskList objects and alphanumerically
+ * sorts them by their task property. Returns -1 if they need
+ * to be sorted and 1 if nothing needs to change. Returns 0
+ * if they are the same and also dont need to be sorted.
  * 
- * @param {String} taskItemA 
- * @param {String} taskItemB 
- * @param {integer} recursionAddon 
+ * @param {String} a 
+ * @param {String} b 
  * @returns 
  */
 function compareFn(a, b) {
 
   let compareArr = [a.task, b.task].sort();
+
+
+  let arrA = [];
+
+  if (parseint(a)) {
+
+    arrA.append()
+
+    
+
+  }
 
   let aIndex = compareArr.indexOf(a.task);
   let bIndex = compareArr.indexOf(b.task);
@@ -130,10 +143,24 @@ function compareFn(a, b) {
 
 }
 
-function editTask() {
+/**
+ * Allows user to change the task property of a selected taskList element
+ * which is selected using its index value
+ * 
+ * @param {integer} taskIndex 
+ */
+function editTask(taskIndex) {
+
+  let taskSelected = taskList[taskIndex];
+  taskSelected.task = prompt("Edit task", `${taskSelected.task}`)
+
+  renderTaskList();
 
 }
 
+/**
+ * Lets user change the list title and update the html accordingly
+ */
 function editListTitle() {
 
   let listTitleNode = document.querySelector('h1');
@@ -148,7 +175,6 @@ function editListTitle() {
  * First deletes list children and then adds them back with any changes.
  * Refreshes list.
  */
-
 function renderTaskList() {
 
   while (list.firstElementChild) {
