@@ -100,10 +100,11 @@ function sortTaskList() {
 }
 
 /**
- * Takes two sequential taskList objects and alphanumerically
- * sorts them by their task property. Returns -1 if they need
- * to be sorted and 1 if nothing needs to change. Returns 0
- * if they are the same and also dont need to be sorted.
+ * Takes two task list items and compares their task property.
+ * If task a is greater than task b, returns a negative number
+ * If task a is less than task b, returns a positive number
+ * If both tasks are the same, returns 0
+ * Comparison condition is Natural Sort's
  * 
  * @param {String} a 
  * @param {String} b 
@@ -111,35 +112,10 @@ function sortTaskList() {
  */
 function compareFn(a, b) {
 
-  let compareArr = [a.task, b.task].sort();
-
-
-  let arrA = [];
-
-  if (parseint(a)) {
-
-    arrA.append()
-
-    
-
-  }
-
-  let aIndex = compareArr.indexOf(a.task);
-  let bIndex = compareArr.indexOf(b.task);
-
-  if (aIndex < bIndex) {
-
-    return -1;
-
-  }
-
-  if (aIndex > bIndex) {
-
-    return 1;
-
-  }
-
-  return 0;
+  let isLessThan = a.task.localeCompare(b.task, undefined, { 
+                                        numeric: true, 
+                                        sensitivity: 'base'});
+  return isLessThan;
 
 }
 

@@ -1,3 +1,37 @@
+/* Basic styling */
+/*-----------------------------------------------------*/
 li {
-    list-style-type: square;
+  list-style-type: "🔲";
+}
+  /* 🔳 */
+
+h1 {
+  font-size: 475%;
+  color: #222d30;
+}
+
+ul {
+  font-size: 175%;
+  color: #020525;
+}
+
+* {
+  font-family: 'Franklin Gothic Medium',
+               'Arial Narrow', Arial, sans-serif;
+}
+
+@media (max-width: 30em) {
+  * {
+    color: #c73030
   }
+}
+
+/* body {
+
+  background: rgb(164, 158, 197) url("/images/potato.jpeg")
+               10px 10px repeat fixed;
+
+} */
+
+
+
