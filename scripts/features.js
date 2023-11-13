@@ -5,7 +5,7 @@ const list = document.querySelector('ul');
 fakeList();
 
 //Fake list to edit
-function fakeList() {
+export function fakeList() {
   let i = 0;
   while (i < 10) {
 
@@ -27,7 +27,7 @@ function fakeList() {
  * Supplies parameters to TaskItem() and adds it to the bottom of
  * the list.
  */
-function makeTaskItem() {
+export function makeTaskItem() {
 
   let task = prompt("What do you need to do?", "");
   let isCompleted = false;
@@ -151,7 +151,7 @@ function editListTitle() {
  * First deletes list children and then adds them back with any changes.
  * Refreshes list.
  */
-function renderTaskList() {
+export function renderTaskList() {
 
   while (list.firstElementChild) {
 
@@ -184,7 +184,7 @@ function renderTaskList() {
  * @param {boolean} deleteTask
  */
 
-function TaskItem(task, isCompleted, lineNumber, deleteTask) {
+export function TaskItem(task, isCompleted, lineNumber, deleteTask) {
 
   this.task = task;
   this.isCompleted = isCompleted;
