@@ -26,6 +26,36 @@ ul {
   }
 }
 
+button.deleteBtn {
+
+  background-color: #ffae00;
+  border-radius: 20em;
+  border-color: #222d30;
+
+  position: absolute;
+  left: 100px;
+
+}
+
+button.deleteBtn:hover {
+  
+  background-color: #ac4d00;
+  border-radius: 20em;
+  transition: 0.15s;
+
+}
+
+button.deleteBtn:active {
+
+  background-color: #440000;
+  border-radius: 20em;
+  border-color: #ffffff;
+  transition: 0.15s;
+
+}
+
+button:pr
+
 /* body {
 
   background: rgb(164, 158, 197) url("/images/potato.jpeg")

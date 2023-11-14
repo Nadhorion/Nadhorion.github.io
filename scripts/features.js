@@ -31,7 +31,7 @@ export function makeTaskItem() {
 
   let task = prompt("What do you need to do?", "");
   let isCompleted = false;
-  let lineNumber = taskList.length;
+  let lineNumber = taskList.length - 1;
   let deleteTask = false;
   let taskItem = new TaskItem(task, isCompleted, lineNumber, deleteTask);
   
@@ -46,7 +46,7 @@ export function makeTaskItem() {
  * 
  * @param {integer} lineSelection 
  */
-function deleteTaskItem(lineSelection) {
+export function deleteTaskItem(lineSelection) {
 
   taskList.forEach(element => {
     if (element.lineNumber == lineSelection) {
@@ -91,7 +91,7 @@ function moveTask(taskToMove, destinationIndex) {
  * two task objects to the compareFn at a time using
  * the sort() function
  */
-function sortTaskList() {
+export function sortTaskList() {
 
   taskList.sort(compareFn);
 
@@ -150,8 +150,11 @@ function editListTitle() {
 /**
  * First deletes list children and then adds them back with any changes.
  * Refreshes list.
+ * 
+ * Also adds a delete button to every list item. 
+ * Can be split to new function
  */
-export function renderTaskList() {
+function renderTaskList() {
 
   while (list.firstElementChild) {
 
@@ -166,8 +169,21 @@ export function renderTaskList() {
   for (let i = 0; i < taskList.length; i++) {
 
     let taskText = taskList[i].task;
+
+    let deleteBtn = document.createElement("button");
+    deleteBtn.textContent = i + "🗑️";
+    deleteBtn.className =  "deleteBtn";
+    deleteBtn.id = i;
+    deleteBtn.setAttribute("onclick", "deleteTaskItem(this.id)");
+
+    //Try the below when you are comfortable with listeners
+    //deleteBtn.addEventListener(
+    //'click', ({target}) => deleteTaskItem(target.id))
+    //look into arrow functions, bindings, hoisting as well.
+
     const li = document.createElement("li");
     li.textContent = taskText;
+    li.appendChild(deleteBtn);
     list.append( li );
 
   }
@@ -183,8 +199,7 @@ export function renderTaskList() {
  * @param {integer} lineNumber 
  * @param {boolean} deleteTask
  */
-
-export function TaskItem(task, isCompleted, lineNumber, deleteTask) {
+function TaskItem(task, isCompleted, lineNumber, deleteTask) {
 
   this.task = task;
   this.isCompleted = isCompleted;
