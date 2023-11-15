@@ -9,7 +9,7 @@ export function fakeList() {
   let i = 0;
   while (i < 10) {
 
-    let task = (i * 3).toString();
+    let task = (i * i).toString();
     let isCompleted = false;
     let lineNumber = taskList.length;
     let deleteTask = false;
@@ -174,12 +174,9 @@ function renderTaskList() {
     deleteBtn.textContent = i + "🗑️";
     deleteBtn.className =  "deleteBtn";
     deleteBtn.id = i;
-    deleteBtn.setAttribute("onclick", "deleteTaskItem(this.id)");
-
-    //Try the below when you are comfortable with listeners
-    //deleteBtn.addEventListener(
-    //'click', ({target}) => deleteTaskItem(target.id))
-    //look into arrow functions, bindings, hoisting as well.
+    deleteBtn.addEventListener(
+      "click", (event) => deleteTaskItem(event.target.id));
+  
 
     const li = document.createElement("li");
     li.textContent = taskText;
