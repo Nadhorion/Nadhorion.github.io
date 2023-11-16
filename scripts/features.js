@@ -171,7 +171,7 @@ function renderTaskList() {
     let taskText = taskList[i].task;
 
     let deleteBtn = document.createElement("button");
-    deleteBtn.textContent = i + "🗑️";
+    deleteBtn.textContent = "🗑️";
     deleteBtn.className =  "deleteBtn";
     deleteBtn.id = i;
     deleteBtn.addEventListener(
