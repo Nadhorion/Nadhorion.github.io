@@ -1,0 +1,103 @@
+/* Basic styling */
+/*-----------------------------------------------------*/
+
+/* Title And Navigation(?) Styling */
+#title {
+
+  position:fixed;
+  top: 10px;
+  left: 20px;
+  
+  
+}
+
+.rectangle {
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100px;
+  width: 100%;
+  background-color: #698cc2;
+  
+
+}
+
+/* List Styling */
+
+
+
+li {
+  list-style-type: "🔲";
+}
+  /* 🔳 */
+
+h1 {
+  font-size: 475%;
+  color: #222d30;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+ul {
+  font-size: 175%;
+  color: #020525;
+
+  position: relative;
+  margin-top: 15%;
+  margin-left: 10%;
+  width: 20cm;
+}
+
+/* Delete Button Styling */
+
+button.deleteBtn {
+
+  background-color: #ffffff;
+  border-radius: 20em;
+  border-color: #ff0000;
+  border-style: outset;
+
+  position: absolute;
+  left: 300px;
+  
+
+}
+
+button.deleteBtn:hover {
+  
+  background-color: #ff4747;
+  border-radius: 20em;
+  transition: 0.1s;
+
+}
+
+button.deleteBtn:active {
+
+  background-color: #ff0000;
+  border-radius: 20em;
+  border-color: #ffffff;
+  transition: 0.1s;
+
+}
+
+
+/* Extras */
+
+* {
+  font-family: 'Franklin Gothic Medium',
+               'Arial Narrow', Arial, sans-serif;
+
+  /*for debugging*/             
+  /*border: 1px solid red;*/
+  outline: auto;
+}
+
+@media (max-width: 30em) {
+  * {
+    color: #c73030
+  }
+}
+
+
+
